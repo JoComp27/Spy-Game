@@ -24,7 +24,8 @@ public class TurnRightGuard extends Guard{
     }
     
     @Override
-    public void getBehavior(Map map) {//Caution *** Inherant problem with AI : will get stuck in corners
+    public void getBehavior(Map map) {//Caution *** Inherant problem with AI : will get stuck in corners ***
+ //If character isnt on a corner
         if(this.direction == Direction.DOWN){
         if(map.getMap()[position[0]-1][position[1]] == 'X'){
         position[1] += 1;

@@ -25,7 +25,43 @@ public class TurnLeftGuard extends Guard{
     
     @Override
     public void getBehavior(Map map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          if(this.direction == Direction.DOWN){
+        if(map.getMap()[position[0]+1][position[1]] == 'X'){
+        position[1] += 1;
+    }
+        else{
+            position[0] += 1;
+            this.direction = Direction.RIGHT;
+        }
+        }
+        else if(this.direction == Direction.LEFT){
+            if(map.getMap()[position[0]][position[1]+1] == 'X'){
+        position[0] -= 1;
+    }
+        else{
+            position[1] += 1;
+            this.direction = Direction.DOWN;
+        }
+        }
+        else if(this.direction == Direction.UP){
+            if(map.getMap()[position[0]-1][position[1]] == 'X'){
+        position[1] -= 1;
+    }
+        else{
+            position[0] -= 1;
+            this.direction = Direction.LEFT;
+        }
+        }
+        else{
+            if(map.getMap()[position[0]][position[1]-1] == 'X'){
+        position[0] += 1;
+    }
+        else{
+            position[1] -= 1;
+            this.direction = Direction.UP;
+        }
+        }
+    }
     }
     
-}
+
