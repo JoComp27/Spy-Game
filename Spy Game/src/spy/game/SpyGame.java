@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  *
  * @author Administrateur
  */
+
 public class SpyGame extends Application {
     
     @Override
@@ -45,7 +46,24 @@ public class SpyGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+        
+        int xMax = 10;
+        int yMax = 10;
+        char[][] a = new char[xMax][yMax];
+        for(int i = 0; i < xMax; i++){
+            for(int j = 0; j < yMax; j++){
+                if(j == 0 || j == 9 || i == 0 || i == 9){
+                    a[i][j] = 'X';
+                }
+                else{
+                    a[i][j] = ' ';
+                }
+            }
+        }
+        
+        Map map = new Map(xMax, yMax, a);
+        map.RenderMap();
     }
     
 }

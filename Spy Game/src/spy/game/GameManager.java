@@ -9,13 +9,19 @@ package spy.game;
  *
  * @author Administrateur
  */
-
-public abstract class Guard {
-    public int[] position = new int[2];
-    public int sightLength;
+public class GameManager {
     
-    public Direction direction;
+   private int score;
+   private int turnsLeft;
+   private Map map;
+   
+    public GameManager(){
+        
+    }
     
-    public abstract void getBehavior(Map map);
+    public GameManager(Map map, int turnsLeft){
+        this.map = map;
+        this.turnsLeft = turnsLeft;
+    }
     
 }

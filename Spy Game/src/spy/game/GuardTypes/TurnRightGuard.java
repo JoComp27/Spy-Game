@@ -19,7 +19,7 @@ public class TurnRightGuard extends Guard{
         this.position[0] = x;
         this.position[1] = y;
         this.direction = direction;
-        this.sightLenght = sightLenght;
+        this.sightLength = sightLenght;
         
     }
     

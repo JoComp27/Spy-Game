@@ -17,11 +17,11 @@ import java.util.Random;
 public class RandomGuard extends Guard{
 
     
-    public RandomGuard(int x, int y, Direction direction, int sightLenght){
+    public RandomGuard(int x, int y, Direction direction, int sightLength){
         this.position[0] = x;
         this.position[1] = y;
         this.direction = direction;
-        this.sightLenght = sightLenght;
+        this.sightLength = sightLength;
         
     }
     
