@@ -10,9 +10,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import spy.game.GuardTypes.HorizontalGuard;
+import spy.game.GuardTypes.TurnLeftGuard;
+import spy.game.GuardTypes.TurnRightGuard;
 import spy.game.GuardTypes.VerticalGuard;
+import spy.game.Maps.Map1;
 
 /**
  *
@@ -33,10 +40,14 @@ public class SpyGame extends Application {
             }
         });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        BorderPane root = new BorderPane();
+        HBox test = new HBox();
         
-        Scene scene = new Scene(root, 300, 250);
+        test.getChildren().add(btn);
+        root.setTop(test);
+        
+        
+        Scene scene = new Scene(root, 600, 400);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
@@ -47,33 +58,16 @@ public class SpyGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
+        /*
+        Map1 map1 = new Map1();
         
-        int xMax = 10;
-        int yMax = 10;
-        char[][] a = new char[xMax][yMax];
-        for(int i = 0; i < xMax; i++){
-            for(int j = 0; j < yMax; j++){
-                if(j == 0 || j == 9 || i == 0 || i == 9){
-                    a[i][j] = 'X';
-                }
-                else{
-                    a[i][j] = ' ';
-                }
-            }
-        }
-        
-       Guard[] guardArray = new Guard[1];
-       guardArray[0] = new VerticalGuard(2, 2, Direction.DOWN,2);
-       
-        Map map = new Map(xMax, yMax, a, 1,guardArray);
-        
-        GameManager gm = new GameManager(map, 500);
+        GameManager gm = new GameManager(map1.getMap(), 500);
         
         while(gm.getTurnsLeft() > 0){
             gm.update();
         }
-        
+        */
     }
     
 }

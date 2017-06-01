@@ -39,8 +39,7 @@ public class GameManager {
         System.out.println("Turns left : " + turnsLeft);
         map.RenderMap();
         turnsLeft--;
-        int a;
-        a = input.nextInt();
+        input.next();
     }
     
 }

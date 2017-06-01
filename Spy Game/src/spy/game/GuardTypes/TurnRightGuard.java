@@ -27,38 +27,38 @@ public class TurnRightGuard extends Guard{
     public void getBehavior(Map map) {//Caution *** Inherant problem with AI : will get stuck in corners ***
  //If character isnt on a corner
         if(this.direction == Direction.DOWN){
-        if(map.getMap()[position[0]-1][position[1]] == 'X'){
-        position[1] += 1;
+        if(map.getMap()[position[1]-1][position[0]] == 'X'){
+        position[0] += 1;
     }
         else{
-            position[0] -= 1;
+            position[1] -= 1;
             this.direction = Direction.LEFT;
         }
         }
         else if(this.direction == Direction.LEFT){
-            if(map.getMap()[position[0]][position[1]-1] == 'X'){
-        position[0] -= 1;
+            if(map.getMap()[position[1]][position[0]-1] == 'X'){
+        position[1] -= 1;
     }
         else{
-            position[1] -= 1;
+            position[0] -= 1;
             this.direction = Direction.UP;
         }
         }
         else if(this.direction == Direction.UP){
-            if(map.getMap()[position[0]+1][position[1]] == 'X'){
-        position[1] += 1;
-    }
-        else{
-            position[0] += 1;
-            this.direction = Direction.RIGHT;
-        }
-        }
-        else{
-            if(map.getMap()[position[0]][position[1]+1] == 'X'){
+            if(map.getMap()[position[1]+1][position[0]] == 'X'){
         position[0] += 1;
     }
         else{
             position[1] += 1;
+            this.direction = Direction.RIGHT;
+        }
+        }
+        else{
+            if(map.getMap()[position[1]][position[0]+1] == 'X'){
+        position[1] += 1;
+    }
+        else{
+            position[0] += 1;
             this.direction = Direction.DOWN;
         }
         }

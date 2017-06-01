@@ -15,22 +15,24 @@ public class Map {
     private char[][] map;
     private char[][] mapNoGuards;
     private int numOfGuards;
-    Guard[] guardList;
+    private Player player;
+    private Guard[] guardList;
     
-    public Map(int xMax, int yMax, char[][] map){
+    public Map(int xMax, int yMax, char[][] map, char[][] map1){
         this.map = map;
-        this.mapNoGuards = map;
+        this.mapNoGuards = map1;
         this.xMax = xMax;
         this.yMax = yMax;
     }
     
-    public Map(int xMax, int yMax, char[][] map, int numOfGuards, Guard[] guardList){
+    public Map(int xMax, int yMax, char[][] map, char[][] map1,int numOfGuards, Guard[] guardList, Player player){
         this.map = map;
-        this.mapNoGuards = map;
+        this.mapNoGuards = map1;
         this.xMax = xMax;
         this.yMax = yMax;
         this.numOfGuards = numOfGuards;
         this.guardList = guardList;
+        this.player = player;
     }
     
     public Guard[] getGuardList(){
@@ -60,14 +62,14 @@ public class Map {
     public void RenderMap(){
         
         for(int i = 0; i < xMax;  i++){                     //Reinitialisation of the map
-            for(int j = 0; i < yMax; j++){
+            for(int j = 0; j < yMax; j++){
                 map[i][j] = mapNoGuards[i][j];
             }
         }
         
         for(int g = 0; g < numOfGuards; g++){    //Set guards
             if(mapNoGuards[guardList[g].getX()][guardList[g].getY()] == 'X'){
-                System.out.println("Guard " + g + " is on a wall");
+                System.out.println("Guard " + g + " is on a wall : Not Supposed to Happen");
             }
             else{
                 map[guardList[g].getX()][guardList[g].getY()] = 'G';
@@ -75,53 +77,76 @@ public class Map {
             
             if(guardList[g].getDirection()== Direction.LEFT){   //Sets Up vision of guards
                 for(int i = 1; i <= guardList[g].getSightLength(); i++){
-                    if(map[guardList[g].getX()-i][guardList[g].getY()] == 'G' || map[guardList[g].getX()-i][guardList[g].getY()] == 'X' ){
-                        break;
-                    }
-                    else{
-                        map[guardList[g].getX()-i][guardList[g].getY()] = 'V';
-                    }
-                }
-            }
-            
-            else if(guardList[g].getDirection()== Direction.RIGHT){
-                for(int i = 1; i <= guardList[g].getSightLength(); i++){
-                    if(map[guardList[g].getX()+i][guardList[g].getY()] == 'G' || map[guardList[g].getX()+i][guardList[g].getY()] == 'X' ){
-                        break;
-                    }
-                    else{
-                        map[guardList[g].getX()+i][guardList[g].getY()] = 'V';
-                    }
-                }
-            }
-            
-            else if(guardList[g].getDirection()== Direction.UP){
-                for(int i = 1; i <= guardList[g].getSightLength(); i++){
+                    try{
                     if(map[guardList[g].getX()][guardList[g].getY()-i] == 'G' || map[guardList[g].getX()][guardList[g].getY()-i] == 'X' ){
                         break;
                     }
                     else{
                         map[guardList[g].getX()][guardList[g].getY()-i] = 'V';
                     }
+                    }catch(ArrayIndexOutOfBoundsException ex){
+                        break;
+                    }
                 }
             }
             
-            else {
+            else if(guardList[g].getDirection()== Direction.RIGHT){
                 for(int i = 1; i <= guardList[g].getSightLength(); i++){
+                    try{
                     if(map[guardList[g].getX()][guardList[g].getY()+i] == 'G' || map[guardList[g].getX()][guardList[g].getY()+i] == 'X' ){
                         break;
                     }
                     else{
                         map[guardList[g].getX()][guardList[g].getY()+i] = 'V';
                     }
+                    }catch(ArrayIndexOutOfBoundsException ex){
+                        break;
+                    }
+                }
+            }
+            
+            else if(guardList[g].getDirection()== Direction.UP){
+                for(int i = 1; i <= guardList[g].getSightLength(); i++){
+                    try{
+                    if(map[guardList[g].getX()-i][guardList[g].getY()] == 'G' || map[guardList[g].getX()-i][guardList[g].getY()] == 'X' ){
+                        break;
+                    }
+                    else{
+                        map[guardList[g].getX()-i][guardList[g].getY()] = 'V';
+                    }
+                    }catch(ArrayIndexOutOfBoundsException ex){
+                        break;
+                    }
+                }
+            }
+            
+            else {
+                for(int i = 1; i <= guardList[g].getSightLength(); i++){
+                    try{
+                    if(map[guardList[g].getX()+i][guardList[g].getY()] == 'G' || map[guardList[g].getX()+i][guardList[g].getY()] == 'X' ){
+                        break;
+                    }
+                    else{
+                        map[guardList[g].getX()+i][guardList[g].getY()] = 'V';
+                    }
+                    }catch(ArrayIndexOutOfBoundsException ex){
+                        break;
+                    }
                 }
             }
             
         }
         
+        if(map[player.getX()][player.getY()] == 'X'){
+            System.out.println("Player is currently in a wall!!");
+        }
+        else{
+            map[player.getX()][player.getY()] = 'P';
+        }
         
-        for(int i = 0; i < xMax; i++){
-            for(int j = 0; j < yMax; j++){
+        
+        for(int i = 0; i < yMax; i++){
+            for(int j = 0; j < xMax; j++){
                 System.out.print(map[i][j]);
             }
             System.out.println();

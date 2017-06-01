@@ -16,8 +16,8 @@ import spy.game.Map;
 public class TurnLeftGuard extends Guard{
     
     public TurnLeftGuard(int x, int y, Direction direction, int sightLenght){
-        this.position[0] = x;
-        this.position[1] = y;
+        this.position[1] = x;
+        this.position[0] = y;
         this.direction = direction;
         this.sightLength = sightLenght;
         
@@ -30,38 +30,38 @@ public class TurnLeftGuard extends Guard{
     @Override
     public void getBehavior(Map map) {
           if(this.direction == Direction.DOWN){
-        if(map.getMap()[position[0]+1][position[1]] == 'X'){
-        position[1] += 1;
+        if(map.getMap()[position[1]+1][position[0]] == 'X'){
+        position[0] += 1;
     }
         else{
-            position[0] += 1;
+            position[1] += 1;
             this.direction = Direction.RIGHT;
         }
         }
         else if(this.direction == Direction.LEFT){
-            if(map.getMap()[position[0]][position[1]+1] == 'X'){
-        position[0] -= 1;
+            if(map.getMap()[position[1]][position[0]+1] == 'X'){
+        position[1] -= 1;
     }
         else{
-            position[1] += 1;
+            position[0] += 1;
             this.direction = Direction.DOWN;
         }
         }
         else if(this.direction == Direction.UP){
-            if(map.getMap()[position[0]-1][position[1]] == 'X'){
-        position[1] -= 1;
+            if(map.getMap()[position[1]-1][position[0]] == 'X'){
+        position[0] -= 1;
     }
         else{
-            position[0] -= 1;
+            position[1] -= 1;
             this.direction = Direction.LEFT;
         }
         }
         else{
-            if(map.getMap()[position[0]][position[1]-1] == 'X'){
-        position[0] += 1;
+            if(map.getMap()[position[1]][position[0]-1] == 'X'){
+        position[1] += 1;
     }
         else{
-            position[1] -= 1;
+            position[0] -= 1;
             this.direction = Direction.UP;
         }
         }

@@ -16,8 +16,8 @@ import spy.game.Map;
 public class HorizontalGuard extends Guard {
 
     public HorizontalGuard(int x, int y, Direction direction, int sightLenght){
-        this.position[0] = x;
-        this.position[1] = y;
+        this.position[1] = x;
+        this.position[0] = y;
         this.direction = direction;
         this.sightLength = sightLenght;
         
@@ -25,20 +25,20 @@ public class HorizontalGuard extends Guard {
     
     @Override
     public void getBehavior(Map map) {
-        if(position[0] == 0){
-            position[0]+=1;
+        if(position[1] == 1){
+            position[1]+=1;
             this.direction = Direction.RIGHT;
         }
-        else if(position[0]+1 == map.getXMax()){
-            position[0] -= 1;
+        else if(position[1]+2 == map.getXMax()){
+            position[1] -= 1;
             this.direction = Direction.LEFT;
         }
         else{
         if(this.direction == Direction.RIGHT){
-            position[0] += 1;
+            position[1] += 1;
         }
         else{
-            position[0] -= 1;
+            position[1] -= 1;
         }
     }
     }

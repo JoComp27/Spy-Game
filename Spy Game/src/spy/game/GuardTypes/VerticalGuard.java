@@ -25,20 +25,20 @@ public class VerticalGuard extends Guard{
     
     @Override
     public void getBehavior(Map map) {
-        if(position[1] == 0){
-            position[1]+=1;
+        if(position[0] == 1){
+            position[0]+=1;
             this.direction = Direction.DOWN;
         }
-        else if(position[1]+1 == map.getYMax()){
-            position[1] -= 1;
+        else if(position[0]+2 == map.getYMax()){
+            position[0] -= 1;
             this.direction = Direction.UP;
         }
         else{
         if(this.direction == Direction.DOWN){
-            position[1] += 1;
+            position[0] += 1;
         }
         else{
-            position[1] -= 1;
+            position[0] -= 1;
         }
     }
     }
