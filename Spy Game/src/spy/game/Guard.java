@@ -18,4 +18,20 @@ public abstract class Guard {
     
     public abstract void getBehavior(Map map);
     
+    public int getX(){
+        return position[0];
+    }
+    
+    public int getY(){
+        return position[1];
+    }
+    
+    public Direction getDirection(){
+        return direction;
+    }
+    
+    public int getSightLength(){
+        return sightLength;
+    }
+    
 }

@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import spy.game.GuardTypes.VerticalGuard;
 
 /**
  *
@@ -62,8 +63,17 @@ public class SpyGame extends Application {
             }
         }
         
-        Map map = new Map(xMax, yMax, a);
-        map.RenderMap();
+       Guard[] guardArray = new Guard[1];
+       guardArray[0] = new VerticalGuard(2, 2, Direction.DOWN,2);
+       
+        Map map = new Map(xMax, yMax, a, 1,guardArray);
+        
+        GameManager gm = new GameManager(map, 500);
+        
+        while(gm.getTurnsLeft() > 0){
+            gm.update();
+        }
+        
     }
     
 }

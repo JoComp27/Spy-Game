@@ -5,6 +5,8 @@
  */
 package spy.game;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Administrateur
@@ -15,6 +17,8 @@ public class GameManager {
    private int turnsLeft;
    private Map map;
    
+   Scanner input = new Scanner(System.in);
+   
     public GameManager(){
         
     }
@@ -22,6 +26,21 @@ public class GameManager {
     public GameManager(Map map, int turnsLeft){
         this.map = map;
         this.turnsLeft = turnsLeft;
+    }
+    
+    public int getTurnsLeft(){
+        return turnsLeft;
+    }
+    
+    public void update(){
+        for(int i = 0; i < map.getNumOfGuards(); i++){
+            map.getGuardList()[i].getBehavior(map);
+        }
+        System.out.println("Turns left : " + turnsLeft);
+        map.RenderMap();
+        turnsLeft--;
+        int a;
+        a = input.nextInt();
     }
     
 }
