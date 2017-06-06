@@ -10,10 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import static javafx.scene.input.KeyCode.DOWN;
+import static javafx.scene.input.KeyCode.SPACE;
+import static javafx.scene.input.KeyCode.UP;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import spy.game.GuardTypes.HorizontalGuard;
 import spy.game.GuardTypes.TurnLeftGuard;
@@ -30,6 +35,11 @@ public class SpyGame extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
+         Map1 map1 = new Map1();
+        GameManager gm = new GameManager(map1.getMap(), 500);
+            
+        
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -40,16 +50,51 @@ public class SpyGame extends Application {
             }
         });
         
+        
+        
+        //gm.update();
+        
         BorderPane root = new BorderPane();
         HBox test = new HBox();
+        SpyGrid grid = new SpyGrid(map1.getMap());
         
         test.getChildren().add(btn);
         root.setTop(test);
+        root.setCenter(grid);
+        
+        root.setOnKeyPressed(e -> {
+                switch(e.getCode()) {
+                    case UP: map1.getMap().playerGoUp();    
+                    gm.update();   
+                    grid.updateSpyGrid(map1.getMap());
+                    break;
+                        
+                    case LEFT:map1.getMap().playerGoLeft();    
+                    gm.update();    
+                    grid.updateSpyGrid(map1.getMap());
+                    break;
+                        
+                    case DOWN: map1.getMap().playerGoDown();     
+                    gm.update();    
+                    grid.updateSpyGrid(map1.getMap());
+                    break;
+                        
+                    case RIGHT : map1.getMap().playerGoRight();    
+                    gm.update();    
+                    grid.updateSpyGrid(map1.getMap());
+                    break;
+                        
+                    case SPACE: gm.update(); 
+                    grid.updateSpyGrid(map1.getMap());
+                    break;
+                }
+
+            });
         
         
         Scene scene = new Scene(root, 600, 400);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Spy_Game");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -59,15 +104,10 @@ public class SpyGame extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        /*
-        Map1 map1 = new Map1();
         
-        GameManager gm = new GameManager(map1.getMap(), 500);
+       
         
-        while(gm.getTurnsLeft() > 0){
-            gm.update();
-        }
-        */
+        
     }
     
 }

@@ -27,8 +27,8 @@ public class Player {
     }
     
     public void GoUp(Map map){
-        if(map.getMap()[position[1]][position[0]-1] != 'X'){
-        position[0] -= 1;
+        if(map.getMap()[position[1]-1][position[0]] != 'X'){
+        position[1] -= 1;
         }
         else{
             sayRunningInWall();
@@ -36,8 +36,8 @@ public class Player {
     }
     
     public void GoDown(Map map){
-        if(map.getMap()[position[1]][position[0]+1] != 'X'){
-            position[0] += 1;
+        if(map.getMap()[position[1]+1][position[0]] != 'X'){
+            position[1] += 1;
         }
             else{
                     sayRunningInWall();
@@ -46,8 +46,8 @@ public class Player {
     }
     
     public void GoLeft(Map map){
-        if(map.getMap()[position[1]-1][position[0]] != 'X'){
-            position[1] -= 1;
+        if(map.getMap()[position[1]][position[0]-1] != 'X'){
+            position[0] -= 1;
         }
             else{
                     sayRunningInWall();
@@ -55,8 +55,8 @@ public class Player {
         
     }
     public void GoRight(Map map){
-        if(map.getMap()[position[1]+1][position[0]] != 'X'){
-            position[1] += 1;
+        if(map.getMap()[position[1]][position[0]+1] != 'X'){
+            position[0] += 1;
         }
             else{
                     sayRunningInWall();

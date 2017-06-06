@@ -35,6 +35,22 @@ public class Map {
         this.player = player;
     }
     
+    public void playerGoUp(){
+        player.GoUp(this);
+    }
+    
+    public void playerGoDown(){
+        player.GoDown(this);
+    }
+    
+    public void playerGoLeft(){
+        player.GoLeft(this);
+    }
+    
+    public void playerGoRight(){
+        player.GoRight(this);
+    }
+    
     public Guard[] getGuardList(){
         return guardList;
     }
