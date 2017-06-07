@@ -19,15 +19,15 @@ public class Player {
     }
     
     public int getX(){
-        return position[1];
-    }
-    
-    public int getY(){
         return position[0];
     }
     
+    public int getY(){
+        return position[1];
+    }
+    
     public void GoUp(Map map){
-        if(map.getMap()[position[1]-1][position[0]] != 'X'){
+        if(map.getMap()[position[0]][position[1]-1] != 'X'){
         position[1] -= 1;
         }
         else{
@@ -36,7 +36,7 @@ public class Player {
     }
     
     public void GoDown(Map map){
-        if(map.getMap()[position[1]+1][position[0]] != 'X'){
+        if(map.getMap()[position[0]][position[1]+1] != 'X'){
             position[1] += 1;
         }
             else{
@@ -46,7 +46,7 @@ public class Player {
     }
     
     public void GoLeft(Map map){
-        if(map.getMap()[position[1]][position[0]-1] != 'X'){
+        if(map.getMap()[position[0]-1][position[1]] != 'X'){
             position[0] -= 1;
         }
             else{
@@ -55,7 +55,7 @@ public class Player {
         
     }
     public void GoRight(Map map){
-        if(map.getMap()[position[1]][position[0]+1] != 'X'){
+        if(map.getMap()[position[0]+1][position[1]] != 'X'){
             position[0] += 1;
         }
             else{

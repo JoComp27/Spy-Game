@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import static javafx.scene.input.KeyCode.DOWN;
 import static javafx.scene.input.KeyCode.SPACE;
 import static javafx.scene.input.KeyCode.UP;
@@ -55,11 +56,15 @@ public class SpyGame extends Application {
         //gm.update();
         
         BorderPane root = new BorderPane();
-        HBox test = new HBox();
+        HBox topBox = new HBox();
         SpyGrid grid = new SpyGrid(map1.getMap());
         
-        test.getChildren().add(btn);
-        root.setTop(test);
+        topBox.getChildren().add(btn);
+        root.setTop(topBox);
+        topBox.getChildren().add(new Text("Turns Left: "));
+        Label nbTurnsLeft = new Label(Integer.toString(gm.getTurnsLeft()));
+        topBox.getChildren().add(nbTurnsLeft);
+        
         root.setCenter(grid);
         
         root.setOnKeyPressed(e -> {
@@ -67,25 +72,30 @@ public class SpyGame extends Application {
                     case UP: map1.getMap().playerGoUp();    
                     gm.update();   
                     grid.updateSpyGrid(map1.getMap());
+                    nbTurnsLeft.setText(Integer.toString(gm.getTurnsLeft()));
                     break;
                         
                     case LEFT:map1.getMap().playerGoLeft();    
                     gm.update();    
                     grid.updateSpyGrid(map1.getMap());
+                    nbTurnsLeft.setText(Integer.toString(gm.getTurnsLeft()));
                     break;
                         
                     case DOWN: map1.getMap().playerGoDown();     
                     gm.update();    
                     grid.updateSpyGrid(map1.getMap());
+                    nbTurnsLeft.setText(Integer.toString(gm.getTurnsLeft()));
                     break;
                         
                     case RIGHT : map1.getMap().playerGoRight();    
                     gm.update();    
                     grid.updateSpyGrid(map1.getMap());
+                    nbTurnsLeft.setText(Integer.toString(gm.getTurnsLeft()));
                     break;
                         
                     case SPACE: gm.update(); 
                     grid.updateSpyGrid(map1.getMap());
+                    nbTurnsLeft.setText(Integer.toString(gm.getTurnsLeft()));
                     break;
                 }
 
@@ -98,7 +108,7 @@ public class SpyGame extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    
     /**
      * @param args the command line arguments
      */

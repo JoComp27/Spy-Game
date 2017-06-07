@@ -163,7 +163,7 @@ public class Map {
         
         for(int i = 0; i < yMax; i++){
             for(int j = 0; j < xMax; j++){
-                System.out.print(map[i][j]);
+                System.out.print(map[j][i]);
             }
             System.out.println();
         }    

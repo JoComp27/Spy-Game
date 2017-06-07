@@ -21,10 +21,10 @@ public class SpyGrid extends GridPane {
    
    public void updateSpyGrid(Map map){
        this.getChildren().clear();
-       for(int i = 0; i < map.getXMax(); i++){
-           for(int j = 0; j < map.getYMax(); j++){
+       for(int i = 0; i < map.getYMax(); i++){
+           for(int j = 0; j < map.getXMax(); j++){
                
-               this.add(new Text(Character.toString(map.getMap()[i][j])), i, j);
+               this.add(new Text(Character.toString(map.getMap()[j][i])), j, i);
            }
        }
    }
